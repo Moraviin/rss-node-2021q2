@@ -29,7 +29,7 @@ const validateArguments = ({action, shift, inputPath, outputPath}) => {
     }
   }
 
-  return {action, shift, inputPath, outputPath};
+  return {action: action.toLowerCase(), shift, inputPath, outputPath};
 }
 
 const getArgument = (args) => {
@@ -37,7 +37,7 @@ const getArgument = (args) => {
   return  argIndex === -1 ? '' : arguments[argIndex + 1];
 }
 
-const action = getArgument(['-a', '--action']).toLowerCase();
+const action = getArgument(['-a', '--action']);
 const shift = getArgument(['-s', '--shift']);
 const inputPath = getArgument(['-i', '--input']);
 const outputPath = getArgument(['-o', '--output']);
