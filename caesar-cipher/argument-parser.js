@@ -3,7 +3,7 @@ const arguments = process.argv.slice(2);
 
 const validateArguments = ({action, shift, inputPath, outputPath}) => {
   if(!action || !shift) {
-    console.error('Action/Shift are required');
+    process.stderr.write('Action/Shift are required');
     process.exit(-1);
   }
   
@@ -11,7 +11,7 @@ const validateArguments = ({action, shift, inputPath, outputPath}) => {
   const isShiftValid = Math.floor(Number(shift)) == shift;
   
   if(!isActionValid || !isShiftValid) {
-    console.error('Action or Shift have wrong value');
+    process.stderr.write('Action or Shift have wrong value');
     process.exit(-1);
   }
 
