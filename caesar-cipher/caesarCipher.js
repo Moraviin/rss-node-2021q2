@@ -1,10 +1,10 @@
 const caesarCipher = (string = '', shift = 0) => {
   const safeShift = shift % 26;
-  return string.split('').reduce((result, character) => {
+  return string.split('').map((character) => {
   
     const isLetter = /[A-Z]|[a-z]/.test(character);
     if (!isLetter) {
-      return result += character;
+      return character;
     }
 
     const isUpperCase = /[A-Z]/.test(character);
@@ -21,6 +21,6 @@ const caesarCipher = (string = '', shift = 0) => {
   
     const codedChar = String.fromCharCode(newCharPosition);
 
-    return result += isUpperCase ? codedChar.toUpperCase() : codedChar;
-  }, '');
+    return isUpperCase ? codedChar.toUpperCase() : codedChar;
+  }).join('');
 } 
