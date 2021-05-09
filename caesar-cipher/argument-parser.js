@@ -16,19 +16,15 @@ const validateArguments = ({action, shift, inputPath, outputPath}) => {
   }
 
   if (inputPath) {
-    try {
-      fs.existsSync(inputPath);
-    } catch (e) {
-      process.stderr.write('Input file not found');
+    if(!fs.existsSync(inputPath)) {
+      process.stderr.write('Input file not found\n');
       process.exit(-1)
     }
   }
 
   if (outputPath) {
-    try {
-      fs.existsSync(outputPath);
-    } catch (e) {
-      process.stderr.write('Output file not found');
+    if(!fs.existsSync(outputPath)) {
+      process.stderr.write('Output file not found\n');
       process.exit(-1)
     }
   }

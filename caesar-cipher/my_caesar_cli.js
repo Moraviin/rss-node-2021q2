@@ -13,6 +13,8 @@ const outputData = ({sourcePath, action, shift, outputPath}) => {
 
   if(sourcePath) {
     readStream = fs.createReadStream(sourcePath)
+  } else {
+    console.log(`Write value to ${action}`)
   }
 
   const transformStream = getTransformStream(shift, action);
