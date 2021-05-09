@@ -1,3 +1,5 @@
+const { Transform } = require('stream');
+
 const caesarCipher = (string = '', shift = 0) => {
   const safeShift = shift % 26;
   return string.split('').map((character) => {
@@ -24,3 +26,17 @@ const caesarCipher = (string = '', shift = 0) => {
     return isUpperCase ? codedChar.toUpperCase() : codedChar;
   }).join('');
 } 
+
+module.exports = {
+  getTransformStream: (shift, action) => (
+  new Transform({
+      transform(chunk, _ , cb) {
+        const value = chunk.toString();
+        const actualShift = action === 'encode' ? shift : -shift;
+
+        this.push(caesarCipher(value, actualShift))
+        cb();
+      }
+  })
+)
+}
